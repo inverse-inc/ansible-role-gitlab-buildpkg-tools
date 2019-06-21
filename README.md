@@ -1,5 +1,5 @@
-Role Name
-=========
+gitlab-buildpkg-tools role
+==========================
 
 Install packages from a gitlab-buildpkg-tools PPA.
 
