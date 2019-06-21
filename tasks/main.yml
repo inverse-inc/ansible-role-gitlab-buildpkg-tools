@@ -1,0 +1,4 @@
+---
+# tasks file for gitlab-buildpkg-tools
+- name: include distribution specific tasks
+  include_tasks: "{{ ansible_os_family|lower }}.yml"
