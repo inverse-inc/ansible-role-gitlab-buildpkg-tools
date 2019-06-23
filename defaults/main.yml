@@ -1,5 +1,5 @@
 ---
-# defaults file for gitlab-buildpkg-tools
+# defaults file for gitlab_buildpkg_tools
 ## Debian
 gitlab_buildpkg_tools__apt_sources_dir: /etc/apt/sources.list.d
 gitlab_buildpkg_tools__deb_pkgs:

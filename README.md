@@ -1,4 +1,4 @@
-gitlab-buildpkg-tools role
+gitlab_buildpkg_tools role
 ==========================
 
 Install packages from a gitlab-buildpkg-tools PPA.
@@ -48,10 +48,10 @@ variables:
   * example playbook:
 
 ```yaml
-- name: example usage of inverse-inc.gitlab-buildpkg-tools role
+- name: example usage of inverse-inc.gitlab_buildpkg_tools role
   hosts: all
   roles:
-    - inverse-inc.gitlab-buildpkg-tools
+    - inverse-inc.gitlab_buildpkg_tools
 ```
 
 
@@ -59,10 +59,10 @@ variables:
 
 
 ```yaml
-- name: example usage of inverse-inc.gitlab-buildpkg-tools role
+- name: example usage of inverse-inc.gitlab_buildpkg_tools role
   hosts: all
   roles:
-    - role: inverse-inc.gitlab-buildpkg-tools
+    - role: inverse-inc.gitlab_buildpkg_tools
       vars:
         gitlab_buildpkg_tools__ci_pages_url: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools
         gitlab_buildpkg_tools__ci_project_name: gitlab-buildpkg-tools
