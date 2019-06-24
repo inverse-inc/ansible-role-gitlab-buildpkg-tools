@@ -1,19 +1,27 @@
 ---
-# defaults file for gitlab_buildpkg_tools
+## Common
+gitlab_buildpkg_tools__ppa:
+  - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
+    baseurl: '{{ lookup("env", "CI_PAGES_URL") }}'
+    gpgkey_url: '{{ lookup("env", "CI_PAGES_URL") + "/GPG_PUBLIC_KEY" }}'
+
 ## Debian
-gitlab_buildpkg_tools__apt_sources_dir: /etc/apt/sources.list.d
-gitlab_buildpkg_tools__deb_pkgs:
+gitlab_buildpkg_tools__deb_deps_pkgs:
   - apt-transport-https
   - gnupg
 
+gitlab_buildpkg_tools__deb_sources_dir: /etc/apt/sources.list.d
+gitlab_buildpkg_tools__deb_deps_repos: []
+gitlab_buildpkg_tools__deb_combined_repos: '{{ gitlab_buildpkg_tools__deb_deps_repos +
+                                               gitlab_buildpkg_tools__ppa }}'
+gitlab_buildpkg_tools__deb_built_pkg: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
+
 ## CentOS
-gitlab_buildpkg_tools__rpm_pkgs:
+gitlab_buildpkg_tools__rpm_deps_pkgs:
   - gnupg2
+
+gitlab_buildpkg_tools__rpm_deps_repos: []
+gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_repos +
+                                               gitlab_buildpkg_tools__ppa }}'
+gitlab_buildpkg_tools__rpm_built_pkg: '{{ lookup("env", "RPM_PACKAGES_NAME") }}'
   
-## Common
-# variables defined for CI
-# can be override by inventory to use outside CI
-gitlab_buildpkg_tools__ci_pages_url: '{{ lookup("env", "CI_PAGES_URL") }}'
-gitlab_buildpkg_tools__ci_pages_gpgkey_url: "{{ gitlab_buildpkg_tools__ci_pages_url }}/GPG_PUBLIC_KEY"
-gitlab_buildpkg_tools__ci_project_name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
-gitlab_buildpkg_tools__ci_built_pkg: '{{ lookup("env", "PACKAGES_NAME") }}'
