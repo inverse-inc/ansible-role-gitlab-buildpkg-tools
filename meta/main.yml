@@ -16,9 +16,9 @@ galaxy_info:
 
   galaxy_tags:
     - gitlab
-    - gitlab-buildpkg-tools
+    - buildpkg
+    - build
     - pipeline
 
 
 dependencies: []
-  
