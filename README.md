@@ -74,7 +74,7 @@ variables:
       vars:
         gitlab_buildpkg_tools__rpm_deps_repos:
           - name: packetfence-devel
-            baseurl: 'http://inverse.ca/downloads/PacketFence'
+            baseurl: http://inverse.ca/downloads/PacketFence
             extra_path: devel
             gpgkey_url: https://packetfence.org/downloads/RPM-GPG-KEY-PACKETFENCE-CENTOS
           - name: gitlab-buildpkg-tools
