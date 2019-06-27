@@ -67,10 +67,10 @@ variables:
   * example playbook:
 
 ```yaml
-- name: example usage of inverse-inc.gitlab_buildpkg_tools role
+- name: example usage of inverse_inc.gitlab_buildpkg_tools role
   hosts: all
   roles:
-    - role: inverse-inc.gitlab_buildpkg_tools
+    - role: inverse_inc.gitlab_buildpkg_tools
       vars:
         gitlab_buildpkg_tools__rpm_deps_repos:
           - name: packetfence-devel
