@@ -1,22 +1,29 @@
 ---
-- name: install dependencies to install packages from repo
+- name: install dependencies to install packages from repos
   apt:
-    name: "{{ gitlab_buildpkg_tools__deb_pkgs }}"
-    state: latest
-    
-- name: add public key
-  apt_key:
-    url: "{{ gitlab_buildpkg_tools__ci_pages_gpgkey_url }}"
+    name: "{{ gitlab_buildpkg_tools__deb_deps_pkgs }}"
     state: present
     
-- name: install {{ gitlab_buildpkg_tools__ci_project_name }} repo from gitlab pages
-  template:
-    src: gitlab-pages.j2
-    dest: "{{ gitlab_buildpkg_tools__apt_sources_dir }}/gitlab-pages.list"
+- name: add public keys
+  apt_key:
+    url: "{{ item['gpgkey_url'] }}"
+    state: present
+  loop: "{{ gitlab_buildpkg_tools__deb_combined_repos }}"
+  loop_control:
+    label: "{{ item['gpgkey_url'] }}"
     
-# to take new key and repo(s) into account
-- name: install package from repo
+- name: install repos
+  template:
+    src: sources.list.j2
+    dest: "{{ gitlab_buildpkg_tools__deb_sources_dir }}/{{ item['name'] }}.list"
+  loop: "{{ gitlab_buildpkg_tools__deb_combined_repos }}"
+  loop_control:
+    label: "{{ item['name'] }}"
+    
+# update_cache to take new key(s) and repo(s) into account
+# latest to ensure we always install latest builds
+- name: install packages from Debian repos
   apt:
-    name: "{{ gitlab_buildpkg_tools__ci_built_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__deb_built_pkg }}"
     update_cache: yes
     state: latest

@@ -1,0 +1,3 @@
+{{ ansible_managed | comment }}
+deb [arch=amd64] {{ item['baseurl'] }}/{{ item['extra_path'] | d("debian") }} {{ ansible_distribution_release }} {{ item['pool'] | d("main") }}
+

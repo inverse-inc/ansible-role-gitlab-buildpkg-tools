@@ -1,28 +1,34 @@
 ---
-- name: install dependencies to install packages from repo
+- name: install dependencies to install packages from repos
   yum:
-    name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
-    state: latest
-
-- name: add public key
-  rpm_key: 
+    name: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs }}"
     state: present
-    key: "{{ gitlab_buildpkg_tools__ci_pages_gpgkey_url }}"
 
-- name: install {{ gitlab_buildpkg_tools__ci_project_name }} repo from gitlab pages
+- name: add public keys
+  rpm_key: 
+    key: "{{ item['gpgkey_url'] }}"
+    state: present
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
+  loop_control:
+    label: "{{ item['gpgkey_url'] }}"
+
+- name: install repos
   yum_repository:
-    name: "{{ gitlab_buildpkg_tools__ci_project_name }}"
-    description: "{{ gitlab_buildpkg_tools__ci_project_name }} repo"
-    baseurl: "{{ gitlab_buildpkg_tools__ci_pages_url }}/centos/$releasever/$basearch"
+    name: "{{ item['name'] }}"
+    description: "{{ item['name'] }} repo"
+    baseurl: "{{ item['baseurl'] }}/centos/$releasever/{{ item['extra_path'] | d() }}/$basearch"
     enabled: yes
     gpgcheck: yes
-    gpgkey: "{{ gitlab_buildpkg_tools__ci_pages_gpgkey_url }}"
     metadata_expire: "900"
     skip_if_unavailable: no
     repo_gpgcheck: no
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
+  loop_control:
+    label: "{{ item['name'] }}"
 
-- name: install package from repo
+# latest to ensure we always install latest builds
+- name: install packages from RPM repos
   yum:
-    name: "{{ gitlab_buildpkg_tools__ci_built_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__rpm_built_pkg }}"
     update_cache: yes
     state: latest
