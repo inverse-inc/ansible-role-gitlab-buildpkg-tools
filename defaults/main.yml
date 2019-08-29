@@ -2,9 +2,14 @@
 ## Common
 gitlab_buildpkg_tools__ppa_enabled: '{{ True if lookup("env", "CI_PAGES_URL")
                                              else False }}'
-gitlab_buildpkg_tools__ppa:
+gitlab_buildpkg_tools__deb_ppa:
   - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
-    baseurl: '{{ lookup("env", "CI_PAGES_URL") }}'
+    baseurl: '{{ lookup("env", "CI_PAGES_URL") + "/debian" + ansible_distribution_release + "main" }}'
+    gpgkey: '{{ lookup("env", "CI_PAGES_URL") + "/GPG_PUBLIC_KEY" }}'
+
+gitlab_buildpkg_tools__rpm_ppa:
+  - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
+    baseurl: '{{ lookup("env", "CI_PAGES_URL")  + "/centos/$releasever/$basearch" }}'
     gpgkey: '{{ lookup("env", "CI_PAGES_URL") + "/GPG_PUBLIC_KEY" }}'
 
 ## Debian
@@ -17,13 +22,13 @@ gitlab_buildpkg_tools__deb_keys: []
 
 # we use '[ ]' to merge string with a list
 gitlab_buildpkg_tools__deb_combined_keys: "{{ gitlab_buildpkg_tools__deb_keys +
-                                              ([ gitlab_buildpkg_tools__ppa[0]['gpgkey'] ]
+                                              ([ gitlab_buildpkg_tools__deb_ppa[0]['gpgkey'] ]
                                                if gitlab_buildpkg_tools__ppa_enabled|bool
                                                else []) }}"
 gitlab_buildpkg_tools__deb_sources_dir: /etc/apt/sources.list.d
 gitlab_buildpkg_tools__deb_deps_repos: []
 gitlab_buildpkg_tools__deb_combined_repos: '{{ gitlab_buildpkg_tools__deb_deps_repos +
-                                               (gitlab_buildpkg_tools__ppa
+                                               (gitlab_buildpkg_tools__deb_ppa
                                                 if gitlab_buildpkg_tools__ppa_enabled|bool
                                                 else []) }}'
 gitlab_buildpkg_tools__deb_built_pkg: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
@@ -37,12 +42,12 @@ gitlab_buildpkg_tools__rpm_keys: []
 
 # we use '[ ]' to merge string with a list
 gitlab_buildpkg_tools__rpm_combined_keys: "{{ gitlab_buildpkg_tools__rpm_keys +
-                                              ([ gitlab_buildpkg_tools__ppa[0]['gpgkey'] ]
+                                              ([ gitlab_buildpkg_tools__rpm_ppa[0]['gpgkey'] ]
                                                if gitlab_buildpkg_tools__ppa_enabled|bool
                                                else []) }}"
 gitlab_buildpkg_tools__rpm_deps_repos: []
 gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_repos +
-                                               (gitlab_buildpkg_tools__ppa
+                                               (gitlab_buildpkg_tools__rpm_ppa
                                                 if gitlab_buildpkg_tools__ppa_enabled|bool
                                                 else []) }}'
 gitlab_buildpkg_tools__rpm_built_pkg: '{{ lookup("env", "RPM_PACKAGES_NAME") }}'
