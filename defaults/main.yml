@@ -1,5 +1,7 @@
 ---
 ## Common
+gitlab_buildpkg_tools__ppa_enabled: '{{ True if lookup("env", "CI_PAGES_URL")
+                                             else False }}'
 gitlab_buildpkg_tools__ppa:
   - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
     baseurl: '{{ lookup("env", "CI_PAGES_URL") }}'
@@ -13,7 +15,9 @@ gitlab_buildpkg_tools__deb_deps_pkgs:
 gitlab_buildpkg_tools__deb_sources_dir: /etc/apt/sources.list.d
 gitlab_buildpkg_tools__deb_deps_repos: []
 gitlab_buildpkg_tools__deb_combined_repos: '{{ gitlab_buildpkg_tools__deb_deps_repos +
-                                               gitlab_buildpkg_tools__ppa }}'
+                                               (gitlab_buildpkg_tools__ppa
+                                                if gitlab_buildpkg_tools__ppa_enabled
+                                                else []) }}'
 gitlab_buildpkg_tools__deb_built_pkg: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
 
 ## CentOS
@@ -22,6 +26,8 @@ gitlab_buildpkg_tools__rpm_deps_pkgs:
 
 gitlab_buildpkg_tools__rpm_deps_repos: []
 gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_repos +
-                                               gitlab_buildpkg_tools__ppa }}'
+                                               (gitlab_buildpkg_tools__ppa
+                                                if gitlab_buildpkg_tools__ppa_enabled
+                                                else []) }}'
 gitlab_buildpkg_tools__rpm_built_pkg: '{{ lookup("env", "RPM_PACKAGES_NAME") }}'
-  
+
