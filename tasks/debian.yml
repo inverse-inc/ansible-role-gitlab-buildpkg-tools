@@ -3,14 +3,12 @@
   apt:
     name: "{{ gitlab_buildpkg_tools__deb_deps_pkgs }}"
     state: present
-    
+
 - name: add public keys
   apt_key:
-    url: "{{ item['gpgkey_url'] }}"
+    url: "{{ item }}"
     state: present
-  loop: "{{ gitlab_buildpkg_tools__deb_combined_repos }}"
-  loop_control:
-    label: "{{ item['gpgkey_url'] }}"
+  loop: '{{ gitlab_buildpkg_tools__deb_combined_keys }}'
     
 - name: install repos
   template:

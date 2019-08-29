@@ -6,11 +6,9 @@
 
 - name: add public keys
   rpm_key: 
-    key: "{{ item['gpgkey_url'] }}"
+    key: "{{ item }}"
     state: present
-  loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
-  loop_control:
-    label: "{{ item['gpgkey_url'] }}"
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
 
 - name: install repos
   yum_repository:
