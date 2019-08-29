@@ -14,7 +14,7 @@
   yum_repository:
     name: "{{ item['name'] }}"
     description: "{{ item['name'] }} repo"
-    baseurl: "{{ item['baseurl'] }}/centos/$releasever/{{ item['extra_path'] | d() }}/$basearch"
+    baseurl: "{{ item['baseurl'] }}"
     enabled: yes
     gpgcheck: yes
     metadata_expire: "900"
