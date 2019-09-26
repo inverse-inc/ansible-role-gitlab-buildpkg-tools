@@ -2,5 +2,5 @@
 .vagrant/
 *~
 \#*\#
-.kitchen/
-.kitchen.local.yml
+*/__pycache__
+*.pyc
