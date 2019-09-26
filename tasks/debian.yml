@@ -9,7 +9,7 @@
     url: "{{ item }}"
     state: present
   loop: '{{ gitlab_buildpkg_tools__deb_combined_keys }}'
-    
+
 - name: install repos
   template:
     src: sources.list.j2
@@ -17,7 +17,7 @@
   loop: "{{ gitlab_buildpkg_tools__deb_combined_repos }}"
   loop_control:
     label: "{{ item['name'] }}"
-    
+
 # update_cache to take new key(s) and repo(s) into account
 # latest to ensure we always install latest builds
 - name: install packages from Debian repos

@@ -5,7 +5,7 @@
     state: present
 
 - name: add public keys
-  rpm_key: 
+  rpm_key:
     key: "{{ item }}"
     state: present
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"

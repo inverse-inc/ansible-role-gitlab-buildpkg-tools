@@ -51,4 +51,3 @@ gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_r
                                                 if gitlab_buildpkg_tools__ppa_enabled|bool
                                                 else []) }}'
 gitlab_buildpkg_tools__rpm_built_pkg: '{{ lookup("env", "RPM_PACKAGES_NAME") }}'
-
