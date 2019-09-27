@@ -19,9 +19,8 @@
     label: "{{ item['name'] }}"
 
 # update_cache to take new key(s) and repo(s) into account
-# latest to ensure we always install latest builds
 - name: install packages from Debian repos
   apt:
     name: "{{ gitlab_buildpkg_tools__deb_pkg }}"
     update_cache: yes
-    state: latest
+    state: present

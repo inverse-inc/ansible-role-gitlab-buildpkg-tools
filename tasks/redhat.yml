@@ -24,10 +24,10 @@
   loop_control:
     label: "{{ item['name'] }}"
 
-# latest to ensure we always install latest builds
+# update_cache to take new key(s) and repo(s) into account
 - name: install packages from RPM repos
   yum:
     name: "{{ gitlab_buildpkg_tools__rpm_pkg }}"
     update_cache: yes
-    state: latest
+    state: present
 
