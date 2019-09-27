@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `gitlab_buildpkg_tools__rpm_built_pkg` renamed to
   `gitlab_buildpkg_tools__deb_pkgs` and `gitlab_buildpkg_tools__rpm_pkgs`
 - Documentation of variables
+- Use state `present` in place of `latest` for packages installations
 
 ### Removed
 - Variable `gitlab_buildpkg_tools__ppa`
