@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - `gpgkey_url` renamed to `gpgkey`
+- `gitlab_buildpkg_tools__deb_built_pkg` and
+  `gitlab_buildpkg_tools__rpm_built_pkg` renamed to
+  `gitlab_buildpkg_tools__deb_pkgs` and `gitlab_buildpkg_tools__rpm_pkgs`
 - Documentation of variables
 
 ### Removed
