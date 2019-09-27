@@ -16,18 +16,71 @@ pipeline to install packages.
 Role Variables
 --------------
 
-| Variable                                    | Default                                                                      | Comments (type)                               |
-| ---                                         | ---                                                                          | ---                                           |
-| `gitlab_buildpkg_tools__ppa`                | See <defaults/main.yml>                                                      | Dict with name, url and GPG key taken from CI |
-| `gitlab_buildpkg_tools__deb_deps_pkgs`      | `['apt-transport-https','gnupg']`                                            | List of Debian dependencies to install repos  |
-| `gitlab_buildpkg_tools__deb_sources_dir`    | `/etc/apt/sources.list.d`                                                    | Debian directory to store repos files         |
-| `gitlab_buildpkg_tools__deb_deps_repos`     | `[]`                                                                         | List of additional Debian repos               |
-| `gitlab_buildpkg_tools__deb_combined_repos` | `'{{ gitlab_buildpkg_tools__deb_deps_repos + gitlab_buildpkg_tools__ppa }}'` | List of Debian repos to install               |
-| `gitlab_buildpkg_tools__deb_built_pkg`      | `'{{ lookup("env"), "DEB_PACKAGES_NAME" }}'`                                 | List of Debian packages to install            |
-| `gitlab_buildpkg_tools__rpm_deps_pkgs`      | `['gnupg2']`                                                                 | List of CentOS dependencies to install repos  |
-| `gitlab_buildpkg_tools__rpm_deps_repos`     | `[]`                                                                         | List of additional CentOS repos               |
-| `gitlab_buildpkg_tools__rpm_combined_repos` | `'{{ gitlab_buildpkg_tools__rpm_deps_repos + gitlab_buildpkg_tools__ppa }}'` | List of CentOS repos to install               |
-| `gitlab_buildpkg_tools__rpm_built_pkg`      | `'{{ lookup("env", "RPM_PACKAGES_NAME") }}'`                                 | List of CentOS packages to install            |
+Available variables are listed below, check `defaults/main.yml` for defaults values:
+
+    gitlab_buildpkg_tools__ppa_enabled
+
+Controls whether PPA repo and key should be installed.
+
+    gitlab_buildpkg_tools__deb_ppa
+
+Debian PPA repo parameters.
+
+    gitlab_buildpkg_tools__rpm_ppa
+
+RPM PPA repo parameters.
+
+    gitlab_buildpkg_tools__deb_deps_pkgs
+
+List of Debian dependencies to install repos.
+
+    gitlab_buildpkg_tools__deb_keys
+
+List of GPG keys **URL**.
+
+    gitlab_buildpkg_tools__deb_combined_keys
+
+List of GPG keys to install (PPA + additional).
+
+    gitlab_buildpkg_tools__deb_sources_dir
+
+Debian directory to store repos files.
+
+    gitlab_buildpkg_tools__deb_deps_repos
+
+List of additional Debian repos.
+
+    gitlab_buildpkg_tools__deb_combined_repos
+
+List of Debian repos to install.
+
+    gitlab_buildpkg_tools__deb_pkgs
+
+List of Debian packages to install.
+
+    gitlab_buildpkg_tools__rpm_deps_pkgs
+
+List of CentOS dependencies to install repos.
+
+    gitlab_buildpkg_tools__rpm_keys
+
+List of GPG keys URL or files.
+
+    gitlab_buildpkg_tools__rpm_combined_keys
+
+List of GPG keys to install (PPA + additional).
+
+    gitlab_buildpkg_tools__rpm_deps_repos
+
+List of additional CentOS repos.
+
+    gitlab_buildpkg_tools__rpm_combined_repos
+
+List of CentOS repos to install.
+
+    gitlab_buildpkg_tools__rpm_pkgs
+
+List of CentOS packages to install.
 
 
 Environment variables to set in a pipeline (see below):
@@ -40,9 +93,10 @@ Environment variables to set in a pipeline (see below):
 Limitations
 -----------
 
-### Mandatory GPG keys for repos ###
+### Debian limitations ###
 
-This role will fail if a repo has no GPG key defined.
+- GPG keys need to be added by URL
+- Debian packages need to be installed by name
 
 ### Environment Variables in .gitlab-ci.yml  ###
 

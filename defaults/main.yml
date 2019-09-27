@@ -36,7 +36,6 @@ gitlab_buildpkg_tools__deb_pkgs: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
 gitlab_buildpkg_tools__rpm_deps_pkgs:
   - gnupg2
 
-# list of URL or files
 gitlab_buildpkg_tools__rpm_keys: []
 
 # we use '[ ]' to merge string with a list
