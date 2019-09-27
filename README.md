@@ -22,6 +22,10 @@ Available variables are listed below, check `defaults/main.yml` for defaults val
 
 Controls whether PPA repo and key should be installed.
 
+    gitlab_buildpkg_tools__ppa_url
+    
+Full URL of the PPA.
+
     gitlab_buildpkg_tools__deb_ppa
 
 Debian PPA repo parameters.
