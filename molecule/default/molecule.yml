@@ -11,7 +11,7 @@ lint:
 platforms:
   - name: instance
     # allow to override docker image with env var
-    image: "${MOLECULE_DISTRO:-centos}:${MOLECULE_TAG:-7}"
+    image: "${MOLECULE_DISTRO:-centos}:${MOLECULE_IMAGE_TAG:-7}"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -24,7 +24,7 @@ provisioner:
   # allow to override playbook use for converge action with env var
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
-    
+
 verifier:
   name: testinfra
   lint:
