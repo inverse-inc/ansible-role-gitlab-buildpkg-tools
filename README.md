@@ -4,14 +4,14 @@ gitlab_buildpkg_tools role
 Install a [gitlab-buildpkg-tools PPA](http://orange-opensource.gitlab.io/gitlab-buildpkg-tools/)
 and packages built with [gitlab-buildpkg-tools](https://gitlab.com/Orange-OpenSource/gitlab-buildpkg-tools) in a pipeline.
 
-This role supports also installing additional repositories or packages to meet
+This role supports also installing additional repositories, GPG keys or packages to meet
 dependencies of built packages in pipeline.
 
 Requirements
 ------------
 
-Role designed to be launch in a GitLab pipeline but can be called outside a
-pipeline to install packages.
+Role designed to be launch in a GitLab pipeline. It can be called outside a
+pipeline but you will need to set some variables by hand.
 
 Role Variables
 --------------
