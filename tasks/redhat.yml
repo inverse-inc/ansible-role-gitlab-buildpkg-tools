@@ -27,6 +27,7 @@
 # latest to ensure we always install latest builds
 - name: install packages from RPM repos
   yum:
-    name: "{{ gitlab_buildpkg_tools__rpm_built_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__rpm_pkg }}"
     update_cache: yes
     state: latest
+

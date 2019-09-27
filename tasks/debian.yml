@@ -22,6 +22,6 @@
 # latest to ensure we always install latest builds
 - name: install packages from Debian repos
   apt:
-    name: "{{ gitlab_buildpkg_tools__deb_built_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__deb_pkg }}"
     update_cache: yes
     state: latest
