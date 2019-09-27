@@ -4,15 +4,17 @@ gitlab_buildpkg_tools__ppa_enabled: '{{ True if lookup("env", "CI_PAGES_URL")
                                              else False }}'
 
 gitlab_buildpkg_tools__ppa_url: '{{ lookup("env", "CI_PAGES_URL") + "/" + lookup("env", "CI_PROJECT_NAME") }}'
+gitlab_buildpkg_tools__ppa_url_deb: '{{ gitlab_buildpkg_tools__ppa_url + "/debian" }}'
+gitlab_buildpkg_tools__ppa_url_rpm: '{{ gitlab_buildpkg_tools__ppa_url + "/centos" }}'
 
 gitlab_buildpkg_tools__deb_ppa:
   - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
-    baseurl: '{{ gitlab_buildpkg_tools__ppa_url + "/debian" + ansible_distribution_release + "main" }}'
+    baseurl: '{{ gitlab_buildpkg_tools__ppa_url_deb }} {{ ansible_distribution_release }} main'
     gpgkey: '{{ gitlab_buildpkg_tools__ppa_url + "/GPG_PUBLIC_KEY" }}'
 
 gitlab_buildpkg_tools__rpm_ppa:
   - name: '{{ lookup("env", "CI_PROJECT_NAME") }}'
-    baseurl: '{{ gitlab_buildpkg_tools__ppa_url  + "/centos/$releasever/$basearch" }}'
+    baseurl: '{{ gitlab_buildpkg_tools__ppa_url_rpm + "/$releasever/$basearch" }}'
     gpgkey: '{{ gitlab_buildpkg_tools__ppa_url + "/GPG_PUBLIC_KEY" }}'
 
 ## Debian
