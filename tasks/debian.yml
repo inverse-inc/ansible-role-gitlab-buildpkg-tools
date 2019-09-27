@@ -21,6 +21,6 @@
 # update_cache to take new key(s) and repo(s) into account
 - name: install packages from Debian repos
   apt:
-    name: "{{ gitlab_buildpkg_tools__deb_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__deb_pkgs }}"
     update_cache: yes
     state: present

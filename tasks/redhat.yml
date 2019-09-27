@@ -27,7 +27,6 @@
 # update_cache to take new key(s) and repo(s) into account
 - name: install packages from RPM repos
   yum:
-    name: "{{ gitlab_buildpkg_tools__rpm_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
     update_cache: yes
     state: present
-
