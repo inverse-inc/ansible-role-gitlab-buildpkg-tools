@@ -9,7 +9,7 @@
 
     gitlab_buildpkg_tools__deb_deps_repos:
       - name: lemonldap-ng
-        baseurl: 'https://lemonldap-ng.ow2.io/lemonldap-ng/ {{ ansible_distribution_release }} main'
+        baseurl: 'https://lemonldap-ng.ow2.io/lemonldap-ng/debian {{ ansible_distribution_release }} main'
 
     gitlab_buildpkg_tools__rpm_keys:
       - https://inverse-inc.gitlab.io/perl-client/GPG_PUBLIC_KEY
