@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `gitlab_buildpkg_tools__deb_ppa_enabled`
 - Allow to install any repos or any GPG keys without any relation between them
 - Simplify installation of repos
+- GitLab pipeline to test roles using molecule
 
 ### Changed
 - `gpgkey_url` renamed to `gpgkey`
