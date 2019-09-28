@@ -5,18 +5,16 @@
     state: present
 
 - name: add public keys
-  rpm_key: 
-    key: "{{ item['gpgkey_url'] }}"
+  rpm_key:
+    key: "{{ item }}"
     state: present
-  loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
-  loop_control:
-    label: "{{ item['gpgkey_url'] }}"
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
 
 - name: install repos
   yum_repository:
     name: "{{ item['name'] }}"
     description: "{{ item['name'] }} repo"
-    baseurl: "{{ item['baseurl'] }}/centos/$releasever/{{ item['extra_path'] | d() }}/$basearch"
+    baseurl: "{{ item['baseurl'] }}"
     enabled: yes
     gpgcheck: yes
     metadata_expire: "900"
@@ -26,9 +24,9 @@
   loop_control:
     label: "{{ item['name'] }}"
 
-# latest to ensure we always install latest builds
+# update_cache to take new key(s) and repo(s) into account
 - name: install packages from RPM repos
   yum:
-    name: "{{ gitlab_buildpkg_tools__rpm_built_pkg }}"
+    name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
     update_cache: yes
-    state: latest
+    state: present

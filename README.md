@@ -1,33 +1,100 @@
 gitlab_buildpkg_tools role
 ==========================
 
+[![pipeline status](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/badges/master/pipeline.svg)](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/commits/master)
+
 Install a [gitlab-buildpkg-tools PPA](http://orange-opensource.gitlab.io/gitlab-buildpkg-tools/)
 and packages built with [gitlab-buildpkg-tools](https://gitlab.com/Orange-OpenSource/gitlab-buildpkg-tools) in a pipeline.
 
-This role supports also installing additional repositories or packages to meet
+This role supports also installing additional repositories, GPG keys or packages to meet
 dependencies of built packages in pipeline.
 
 Requirements
 ------------
 
-Role designed to be launch in a GitLab pipeline but can be called outside a
-pipeline to install packages.
+Role designed to be launch in a GitLab pipeline. It can be called outside a
+pipeline but you will need to set some variables by hand.
 
 Role Variables
 --------------
 
-| Variable                                    | Default                                                                      | Comments (type)                               |
-| ---                                         | ---                                                                          | ---                                           |
-| `gitlab_buildpkg_tools__ppa`                | See <defaults/main.yml>                                                      | Dict with name, url and GPG key taken from CI |
-| `gitlab_buildpkg_tools__deb_deps_pkgs`      | `['apt-transport-https','gnupg']`                                            | List of Debian dependencies to install repos  |
-| `gitlab_buildpkg_tools__deb_sources_dir`    | `/etc/apt/sources.list.d`                                                    | Debian directory to store repos files         |
-| `gitlab_buildpkg_tools__deb_deps_repos`     | `[]`                                                                         | List of additional Debian repos               |
-| `gitlab_buildpkg_tools__deb_combined_repos` | `'{{ gitlab_buildpkg_tools__deb_deps_repos + gitlab_buildpkg_tools__ppa }}'` | List of Debian repos to install               |
-| `gitlab_buildpkg_tools__deb_built_pkg`      | `'{{ lookup("env"), "DEB_PACKAGES_NAME" }}'`                                 | List of Debian packages to install            |
-| `gitlab_buildpkg_tools__rpm_deps_pkgs`      | `['gnupg2']`                                                                 | List of CentOS dependencies to install repos  |
-| `gitlab_buildpkg_tools__rpm_deps_repos`     | `[]`                                                                         | List of additional CentOS repos               |
-| `gitlab_buildpkg_tools__rpm_combined_repos` | `'{{ gitlab_buildpkg_tools__rpm_deps_repos + gitlab_buildpkg_tools__ppa }}'` | List of CentOS repos to install               |
-| `gitlab_buildpkg_tools__rpm_built_pkg`      | `'{{ lookup("env", "RPM_PACKAGES_NAME") }}'`                                 | List of CentOS packages to install            |
+Available variables are listed below, check `defaults/main.yml` for defaults values:
+
+    gitlab_buildpkg_tools__ppa_enabled
+
+Controls whether PPA repo and key should be installed.
+
+    gitlab_buildpkg_tools__ppa_url
+
+URL of the PPA.
+
+    gitlab_buildpkg_tools__ppa_url_deb
+
+URL of the PPA with Debian part.
+
+    gitlab_buildpkg_tools__ppa_url_deb
+
+URL of the PPA with CentOS part.
+
+    gitlab_buildpkg_tools__deb_ppa
+
+Debian PPA repo parameters.
+
+    gitlab_buildpkg_tools__rpm_ppa
+
+RPM PPA repo parameters.
+
+    gitlab_buildpkg_tools__deb_deps_pkgs
+
+List of Debian dependencies to install repos.
+
+    gitlab_buildpkg_tools__deb_keys
+
+List of GPG keys **URL**.
+
+    gitlab_buildpkg_tools__deb_combined_keys
+
+List of GPG keys to install (PPA + additional).
+
+    gitlab_buildpkg_tools__deb_sources_dir
+
+Debian directory to store repos files.
+
+    gitlab_buildpkg_tools__deb_deps_repos
+
+List of additional Debian repos.
+
+    gitlab_buildpkg_tools__deb_combined_repos
+
+List of Debian repos to install.
+
+    gitlab_buildpkg_tools__deb_pkgs
+
+List of Debian packages to install.
+
+    gitlab_buildpkg_tools__rpm_deps_pkgs
+
+List of CentOS dependencies to install repos.
+
+    gitlab_buildpkg_tools__rpm_keys
+
+List of GPG keys URL or files.
+
+    gitlab_buildpkg_tools__rpm_combined_keys
+
+List of GPG keys to install (PPA + additional).
+
+    gitlab_buildpkg_tools__rpm_deps_repos
+
+List of additional CentOS repos.
+
+    gitlab_buildpkg_tools__rpm_combined_repos
+
+List of CentOS repos to install.
+
+    gitlab_buildpkg_tools__rpm_pkgs
+
+List of CentOS packages to install.
 
 
 Environment variables to set in a pipeline (see below):
@@ -40,9 +107,10 @@ Environment variables to set in a pipeline (see below):
 Limitations
 -----------
 
-### Mandatory GPG keys for repos ###
+### Debian limitations ###
 
-This role will fail if a repo has no GPG key defined.
+- GPG keys need to be added by URL
+- Debian packages need to be installed by name
 
 ### Environment Variables in .gitlab-ci.yml  ###
 
@@ -53,47 +121,30 @@ dictionnary. Consequently, you need to use an inline YAML syntax.
 Examples
 --------
 
-### Example playbook to install packages **inside** of a CI with additional repos ###
+### Example to install packages **inside** of a CI  ###
 
 
   * `.gitlab-ci.yml`:
 
 ```yaml
 variables:
-  DEB_PACKAGES_NAME: "['fingerbank', 'apt-add-gitlab', 'gitlab-buildpkg-tools']"
-  RPM_PACKAGES_NAME: "['fingerbank', 'yum-add-gitlab', 'gitlab-buildpkg-tools']"
+  DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
+  RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+  CI_PROJECT_NAME: gitlab-buildpkg-tools
+  CI_PAGES_URL: http://orange-opensource.gitlab.io
 ```
 
-  * example playbook:
+Of course, if you use this playbook inside a pipeline where
+`gitlab-buildpkg-tools` is used, you don't need to define `CI_PROJECT_NAME`
+and `CI_PAGES_URL` variables.
 
-```yaml
-- name: example usage of inverse_inc.gitlab_buildpkg_tools role
-  hosts: all
-  roles:
-    - role: inverse_inc.gitlab_buildpkg_tools
-      vars:
-        gitlab_buildpkg_tools__rpm_deps_repos:
-          - name: packetfence-devel
-            baseurl: http://inverse.ca/downloads/PacketFence
-            extra_path: devel
-            gpgkey_url: https://packetfence.org/downloads/RPM-GPG-KEY-PACKETFENCE-CENTOS
-          - name: gitlab-buildpkg-tools
-            baseurl: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools
-            gpgkey_url: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools/GPG_PUBLIC_KEY
-        gitlab_buildpkg_tools__deb_deps_repos:
-          - name: packetfence-devel
-            baseurl: http://inverse.ca/downloads/PacketFence
-            gpgkey_url: http://inverse.ca/downloads/APT-GPG-KEY-PACKETFENCE-DEBIAN
-            extra_path: debian-devel
-            pool: stretch
-          - name: packetfence
-            baseurl: http://inverse.ca/downloads/PacketFence
-            gpgkey_url: http://inverse.ca/downloads/APT-GPG-KEY-PACKETFENCE-DEBIAN
-            pool: stretch
-          - name: gitlab-buildpkg-tools
-            baseurl: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools
-            gpgkey_url: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools/GPG_PUBLIC_KEY
-```
+  * example playbook: see [playbook.yml use for molecule tests](molecule/default/playbook.yml)
+
+
+### Example to install packages with additional repos and keys ###
+
+See [playbook-additional.yml use for molecule
+tests](molecule/default/playbook-additional.yml).
 
 License
 -------

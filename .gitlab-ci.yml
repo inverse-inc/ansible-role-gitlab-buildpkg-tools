@@ -1,0 +1,135 @@
+---
+### COMMON PARAMETERS
+
+### STAGES
+stages:
+  - test_ppa
+  - test_additional
+  - test_ppa_and_additional
+
+### VARIABLES
+variables:
+  ROLE_NAMESPACE: inverse-inc
+  ROLE_NAME: gitlab-buildpkg-tools
+
+### TEMPLATES
+.tpl_common: &common
+  image: geerlingguy/docker-debian10-ansible:latest
+  script:
+    - pip install molecule[docker]
+    - molecule test
+
+.tpl_test_ppa: &test_ppa
+  stage: test_ppa
+  variables:
+    CI_PROJECT_NAME: gitlab-buildpkg-tools
+    CI_PAGES_URL: http://orange-opensource.gitlab.io
+    DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
+    RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+
+.tpl_test_additional: &test_additional
+  stage: test_additional
+  variables:
+    MOLECULE_PLAYBOOK:
+
+.tpl_test_ppa_and_additional: &test_ppa_and_additional
+  stage: test_ppa_and_additional
+  variables:
+    CI_PROJECT_NAME: gitlab-buildpkg-tools
+    CI_PAGES_URL: http://orange-opensource.gitlab.io
+    MOLECULE_PLAYBOOK: playbook-additional.yml
+
+### JOBS
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - cd ../
+  - mv ansible-role- $ROLE_NAMESPACE.$ROLE_NAME
+  - cd $ROLE_NAMESPACE.$ROLE_NAME
+
+#### TEST PPA JOBS
+debian9_test_ppa:
+  <<: *common
+  <<: *test_ppa
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 9
+
+debian10_test_ppa:
+  <<: *common
+  <<: *test_ppa
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 10
+  
+centos7_test_additional:
+  <<: *common
+  <<: *test_additional
+  variables:
+    MOLECULE_DISTRO: centos
+    MOLECULE_IMAGE_TAG: 7
+
+# centos8_test_additional:
+#   <<: *common
+#   <<: *test_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8
+
+#### TEST ADDITIONAL JOBS
+debian9_test_additional:
+  <<: *common
+  <<: *test_additional
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 9
+
+debian10_test_additional:
+  <<: *common
+  <<: *test_additional
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 10
+  
+centos7_test_additional:
+  <<: *common
+  <<: *test_additional
+  variables:
+    MOLECULE_DISTRO: centos
+    MOLECULE_IMAGE_TAG: 7
+
+# centos8_test_additional:
+#   <<: *common
+#   <<: *test_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8
+
+
+#### TEST PPA_AND_ADDITIONAL JOBS
+debian9_test_ppa_and_additional:
+  <<: *common
+  <<: *test_ppa_and_additional
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 9
+
+debian10_test_ppa_and_additional:
+  <<: *common
+  <<: *test_ppa_and_additional
+  variables:
+    MOLECULE_DISTRO: debian
+    MOLECULE_IMAGE_TAG: 10
+  
+centos7_test_ppa_and_additional:
+  <<: *common
+  <<: *test_ppa_and_additional
+  variables:
+    MOLECULE_DISTRO: centos
+    MOLECULE_IMAGE_TAG: 7
+
+# centos8_test_ppa_and_additional:
+#   <<: *common
+#   <<: *test_ppa_and_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8
