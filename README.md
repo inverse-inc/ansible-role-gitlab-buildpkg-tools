@@ -119,47 +119,30 @@ dictionnary. Consequently, you need to use an inline YAML syntax.
 Examples
 --------
 
-### Example playbook to install packages **inside** of a CI with additional repos ###
+### Example to install packages **inside** of a CI  ###
 
 
   * `.gitlab-ci.yml`:
 
 ```yaml
 variables:
-  DEB_PACKAGES_NAME: "['fingerbank', 'apt-add-gitlab', 'gitlab-buildpkg-tools']"
-  RPM_PACKAGES_NAME: "['fingerbank', 'yum-add-gitlab', 'gitlab-buildpkg-tools']"
+  DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
+  RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+  CI_PROJECT_NAME: gitlab-buildpkg-tools
+  CI_PAGES_URL: http://orange-opensource.gitlab.io
 ```
 
-  * example playbook:
+Of course, if you use this playbook inside a pipeline where
+`gitlab-buildpkg-tools` is used, you don't need to define `CI_PROJECT_NAME`
+and `CI_PAGES_URL` variables.
 
-```yaml
-- name: example usage of inverse_inc.gitlab_buildpkg_tools role
-  hosts: all
-  roles:
-    - role: inverse_inc.gitlab_buildpkg_tools
-      vars:
-        gitlab_buildpkg_tools__rpm_deps_repos:
-          - name: packetfence-devel
-            baseurl: http://inverse.ca/downloads/PacketFence
-            extra_path: devel
-            gpgkey_url: https://packetfence.org/downloads/RPM-GPG-KEY-PACKETFENCE-CENTOS
-          - name: gitlab-buildpkg-tools
-            baseurl: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools
-            gpgkey_url: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools/GPG_PUBLIC_KEY
-        gitlab_buildpkg_tools__deb_deps_repos:
-          - name: packetfence-devel
-            baseurl: http://inverse.ca/downloads/PacketFence
-            gpgkey_url: http://inverse.ca/downloads/APT-GPG-KEY-PACKETFENCE-DEBIAN
-            extra_path: debian-devel
-            pool: stretch
-          - name: packetfence
-            baseurl: http://inverse.ca/downloads/PacketFence
-            gpgkey_url: http://inverse.ca/downloads/APT-GPG-KEY-PACKETFENCE-DEBIAN
-            pool: stretch
-          - name: gitlab-buildpkg-tools
-            baseurl: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools
-            gpgkey_url: https://orange-opensource.gitlab.io/gitlab-buildpkg-tools/GPG_PUBLIC_KEY
-```
+  * example playbook: see [playbook.yml use for molecule tests](molecule/default/playbook.yml)
+
+
+### Example to install packages with additional repos and keys ###
+
+See [playbook-additional.yml use for molecule
+tests](molecule/default/playbook-additional.yml).
 
 License
 -------
