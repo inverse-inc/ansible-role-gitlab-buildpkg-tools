@@ -19,7 +19,7 @@ variables:
 ### TEMPLATES
 .tpl_common: &common
   script:
-    - pip3 install molecule[docker]
+    - pip install molecule[docker]
     - molecule test
 
 .tpl_test_ppa: &test_ppa
