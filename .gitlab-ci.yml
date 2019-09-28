@@ -63,7 +63,7 @@ debian10_test_ppa:
   
 centos7_test_ppa:
   <<: *common
-  <<: *test_additional
+  <<: *test_ppa
   variables:
     MOLECULE_DISTRO: centos
     MOLECULE_IMAGE_TAG: 7
