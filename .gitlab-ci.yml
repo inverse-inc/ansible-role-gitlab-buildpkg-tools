@@ -5,6 +5,7 @@
 stages:
   - test_ppa
   - test_additional
+  - test_ppa_and_additional
 
 ### VARIABLES
 variables:
@@ -26,7 +27,7 @@ variables:
     DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
     RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
 
-.tpl_test_ppa: &test_additional
+.tpl_test_additional: &test_additional
   stage: test_additional
   variables:
     MOLECULE_PLAYBOOK:
@@ -45,7 +46,7 @@ before_script:
   - mv ansible-role- $ROLE_NAMESPACE.$ROLE_NAME
   - cd $ROLE_NAMESPACE.$ROLE_NAME
 
-# TEST PPA JOBS
+#### TEST PPA JOBS
 debian9_test_ppa:
   <<: *common
   <<: *test_ppa
@@ -67,14 +68,14 @@ centos7_test_additional:
     MOLECULE_DISTRO: centos
     MOLECULE_IMAGE_TAG: 7
 
-centos8_test_additional:
-  <<: *common
-  <<: *test_additional
-  variables:
-    MOLECULE_DISTRO: centos
-    MOLECULE_IMAGE_TAG: 8
+# centos8_test_additional:
+#   <<: *common
+#   <<: *test_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8
 
-# TEST ADDITIONAL JOBS
+#### TEST ADDITIONAL JOBS
 debian9_test_additional:
   <<: *common
   <<: *test_additional
@@ -96,15 +97,15 @@ centos7_test_additional:
     MOLECULE_DISTRO: centos
     MOLECULE_IMAGE_TAG: 7
 
-centos8_test_additional:
-  <<: *common
-  <<: *test_additional
-  variables:
-    MOLECULE_DISTRO: centos
-    MOLECULE_IMAGE_TAG: 8
+# centos8_test_additional:
+#   <<: *common
+#   <<: *test_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8
 
 
-# TEST PPA_AND_ADDITIONAL JOBS
+#### TEST PPA_AND_ADDITIONAL JOBS
 debian9_test_ppa_and_additional:
   <<: *common
   <<: *test_ppa_and_additional
@@ -126,9 +127,9 @@ centos7_test_ppa_and_additional:
     MOLECULE_DISTRO: centos
     MOLECULE_IMAGE_TAG: 7
 
-centos8_test_ppa_and_additional:
-  <<: *common
-  <<: *test_ppa_and_additional
-  variables:
-    MOLECULE_DISTRO: centos
-    MOLECULE_IMAGE_TAG: 8
+# centos8_test_ppa_and_additional:
+#   <<: *common
+#   <<: *test_ppa_and_additional
+#   variables:
+#     MOLECULE_DISTRO: centos
+#     MOLECULE_IMAGE_TAG: 8

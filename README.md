@@ -1,6 +1,8 @@
 gitlab_buildpkg_tools role
 ==========================
 
+[![pipeline status](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/badges/master/pipeline.svg)](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/commits/master)
+
 Install a [gitlab-buildpkg-tools PPA](http://orange-opensource.gitlab.io/gitlab-buildpkg-tools/)
 and packages built with [gitlab-buildpkg-tools](https://gitlab.com/Orange-OpenSource/gitlab-buildpkg-tools) in a pipeline.
 
