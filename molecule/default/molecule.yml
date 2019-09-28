@@ -12,10 +12,6 @@ platforms:
   - name: instance
     # allow to override docker image with env var
     image: "${MOLECULE_DISTRO:-centos}:${MOLECULE_IMAGE_TAG:-7}"
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    privileged: true
     
 provisioner:
   name: ansible
