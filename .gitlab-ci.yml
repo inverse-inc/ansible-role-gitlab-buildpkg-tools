@@ -1,5 +1,9 @@
 ---
 ### COMMON PARAMETERS
+image: geerlingguy/docker-debian10-ansible:latest
+# to use docker-in-docker
+services:
+  - docker:19.03.0-dind
 
 ### STAGES
 stages:
@@ -14,7 +18,6 @@ variables:
 
 ### TEMPLATES
 .tpl_common: &common
-  image: geerlingguy/docker-debian10-ansible:latest
   script:
     - pip3 install molecule[docker]
     - molecule test
