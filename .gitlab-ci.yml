@@ -16,7 +16,7 @@ variables:
 .tpl_common: &common
   image: geerlingguy/docker-debian10-ansible:latest
   script:
-    - pip install molecule[docker]
+    - pip3 install molecule[docker]
     - molecule test
 
 .tpl_test_ppa: &test_ppa
