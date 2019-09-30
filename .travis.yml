@@ -47,22 +47,22 @@ env:
 
     # Test PPA and additional
     - MOLECULE_DISTRO: debian9
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
 
     - MOLECULE_DISTRO: debian10
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
 
     - MOLECULE_DISTRO: centos7
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
 
     # - MOLECULE_DISTRO: centos8
-    #   MOLECULE_PLAYBOOK: playbook-additional.yml
+    #   MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
     #   CI_PROJECT_NAME: gitlab-buildpkg-tools
     #   CI_PAGES_URL: http://orange-opensource.gitlab.io
 
