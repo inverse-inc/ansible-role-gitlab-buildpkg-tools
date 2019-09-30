@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-09-30
+
 ### Added
 - Molecule tests to test this role on several OS
 - Enable PPA only if running in a pipeline with
@@ -31,4 +33,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Role name in example playbook
 
 
-[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v0.2.0...v1.0.0
