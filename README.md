@@ -146,6 +146,14 @@ and `CI_PAGES_URL` variables.
 See [playbook-additional.yml use for molecule
 tests](molecule/default/playbook-additional.yml).
 
+
+Test of this role
+-----------------
+
+This role can't be completely test in a GitLab CI pipeline because we want to
+use predefined environment variables that can't be overrided (`CI_PAGES_URL`
+and `CI_PROJECT_NAME`). For this reason, we use Travis CI to test this role.
+
 License
 -------
 
