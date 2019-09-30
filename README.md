@@ -154,6 +154,27 @@ This role can't be completely test in a GitLab CI pipeline because we want to
 use predefined environment variables that can't be overriden (`CI_PAGES_URL`
 and `CI_PROJECT_NAME`). For this reason, we use Travis CI to test this role.
 
+### Local tests ###
+
+Prerequisites:
+- molecule[docker]
+- ansible
+- docker
+
+Examples:
+```shell
+$ MOLECULE_DISTRO=debian10 \
+CI_PROJECT_NAME=gitlab-buildpkg-tools \
+CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools \
+MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml molecule test
+
+$ MOLECULE_DISTRO=centos7 \
+CI_PROJECT_NAME=gitlab-buildpkg-tools \
+CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools \
+MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml molecule test
+```
+
+
 License
 -------
 
