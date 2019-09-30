@@ -131,7 +131,7 @@ variables:
   DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
   RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
   CI_PROJECT_NAME: gitlab-buildpkg-tools
-  CI_PAGES_URL: http://orange-opensource.gitlab.io
+  CI_PAGES_URL: http://orange-opensource.gitlab.io/gitlab-buildpkg-tools
 ```
 
 Of course, if you use this playbook inside a pipeline where
@@ -151,7 +151,7 @@ Test of this role
 -----------------
 
 This role can't be completely test in a GitLab CI pipeline because we want to
-use predefined environment variables that can't be overrided (`CI_PAGES_URL`
+use predefined environment variables that can't be overriden (`CI_PAGES_URL`
 and `CI_PROJECT_NAME`). For this reason, we use Travis CI to test this role.
 
 License
