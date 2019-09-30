@@ -11,26 +11,26 @@ env:
     - MOLECULE_DISTRO: debian9
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
+      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
 
     - MOLECULE_DISTRO: debian10
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
+      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
 
     - MOLECULE_DISTRO: centos7
       CI_PROJECT_NAME: gitlab-buildpkg-tools
       CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
+      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
 
     # - MOLECULE_DISTRO: centos8
     #   CI_PROJECT_NAME: gitlab-buildpkg-tools
     #   CI_PAGES_URL: http://orange-opensource.gitlab.io
-    #   DEB_PACKAGES_NAME: "['apt-add-gitlab', 'gitlab-buildpkg-tools']"
-    #   RPM_PACKAGES_NAME: "['yum-add-gitlab', 'gitlab-buildpkg-tools']"
+    #   DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
+    #   RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
 
     # Test additional
     - MOLECULE_DISTRO: debian9
