@@ -3,7 +3,7 @@
 gitlab_buildpkg_tools__ppa_enabled: '{{ True if lookup("env", "CI_PAGES_URL")
                                              else False }}'
 
-gitlab_buildpkg_tools__ppa_url: '{{ lookup("env", "CI_PAGES_URL") + "/" + lookup("env", "CI_PROJECT_NAME") }}'
+gitlab_buildpkg_tools__ppa_url: '{{ lookup("env", "CI_PAGES_URL") }}'
 gitlab_buildpkg_tools__ppa_url_deb: '{{ gitlab_buildpkg_tools__ppa_url + "/debian" }}'
 gitlab_buildpkg_tools__ppa_url_rpm: '{{ gitlab_buildpkg_tools__ppa_url + "/centos" }}'
 
