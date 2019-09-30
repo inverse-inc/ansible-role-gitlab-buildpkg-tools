@@ -1,6 +1,7 @@
 ---
 ### COMMON PARAMETERS
-image: geerlingguy/docker-debian10-ansible:latest
+image: docker:19.03.0
+
 # to use docker-in-docker
 services:
   - docker:19.03.0-dind
@@ -15,11 +16,13 @@ stages:
 variables:
   ROLE_NAMESPACE: inverse-inc
   ROLE_NAME: gitlab-buildpkg-tools
+  # see https://about.gitlab.com/2019/07/31/docker-in-docker-with-docker-19-dot-03/
+  DOCKER_TLS_CERTDIR: ""
 
 ### TEMPLATES
 .tpl_common: &common
   script:
-    - pip install molecule[docker]
+    - pip install ansible molecule[docker]
     - molecule test
 
 .tpl_test_ppa: &test_ppa
@@ -45,6 +48,9 @@ variables:
 ### JOBS
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
+  - apk update && apk add --no-cache python3-dev py3-pip gcc git curl build-base
+    autoconf automake py3-cryptography linux-headers
+    musl-dev libffi-dev openssl-dev openssh
   - cd ../
   - mv ansible-role-$ROLE_NAME $ROLE_NAMESPACE.$ROLE_NAME
   - cd $ROLE_NAMESPACE.$ROLE_NAME
