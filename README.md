@@ -1,7 +1,7 @@
 gitlab_buildpkg_tools role
 ==========================
 
-[![pipeline status](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/badges/master/pipeline.svg)](https://gitlab.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/commits/master)
+[![Build Status](https://travis-ci.org/inverse-inc/ansible-role-gitlab-buildpkg-tools.svg?branch=master)](https://travis-ci.org/inverse-inc/ansible-role-gitlab-buildpkg-tools)
 
 Install a [gitlab-buildpkg-tools PPA](http://orange-opensource.gitlab.io/gitlab-buildpkg-tools/)
 and packages built with [gitlab-buildpkg-tools](https://gitlab.com/Orange-OpenSource/gitlab-buildpkg-tools) in a pipeline.
@@ -145,6 +145,14 @@ and `CI_PAGES_URL` variables.
 
 See [playbook-additional.yml use for molecule
 tests](molecule/default/playbook-additional.yml).
+
+
+Test of this role
+-----------------
+
+This role can't be completely test in a GitLab CI pipeline because we want to
+use predefined environment variables that can't be overrided (`CI_PAGES_URL`
+and `CI_PROJECT_NAME`). For this reason, we use Travis CI to test this role.
 
 License
 -------

@@ -21,9 +21,13 @@
         baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/devel/$basearch
 
     gitlab_buildpkg_tools__deb_pkgs:
+      - apt-add-gitlab
+      - gitlab-buildpkg-tools
       - lemonldap-ng
 
     gitlab_buildpkg_tools__rpm_pkgs:
+      - yum-add-gitlab
+      - gitlab-buildpkg-tools
       - fingerbank
 
   roles:
