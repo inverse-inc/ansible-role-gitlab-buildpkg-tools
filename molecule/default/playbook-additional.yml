@@ -27,6 +27,6 @@
       - yum-add-gitlab
       - gitlab-buildpkg-tools
       - fingerbank
-      
+
   roles:
     - role: inverse-inc.gitlab-buildpkg-tools
