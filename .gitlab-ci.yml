@@ -33,7 +33,7 @@ variables:
 .tpl_test_additional: &test_additional
   stage: test_additional
   variables:
-    MOLECULE_PLAYBOOK:
+    MOLECULE_PLAYBOOK: playbook-additional.yml
 
 .tpl_test_ppa_and_additional: &test_ppa_and_additional
   stage: test_ppa_and_additional
