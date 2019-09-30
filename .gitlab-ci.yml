@@ -22,7 +22,7 @@ variables:
 ### TEMPLATES
 .tpl_common: &common
   script:
-    - pip install ansible molecule[docker]
+    - pip3 install ansible molecule[docker]
     - molecule test
 
 .tpl_test_ppa: &test_ppa
