@@ -8,63 +8,59 @@ env:
     - ROLE_NAME: gitlab-buildpkg-tools
   matrix:
     # Test PPA
-    - MOLECULE_DISTRO: debian9
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
+    - MOLECULE_DISTRO=debian9
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
+      DEB_PACKAGES_NAME="['apt-add-gitlab','gitlab-buildpkg-tools']"
 
-    - MOLECULE_DISTRO: debian10
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
+    - MOLECULE_DISTRO=debian10
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
+      DEB_PACKAGES_NAME="['apt-add-gitlab','gitlab-buildpkg-tools']"
 
-    - MOLECULE_DISTRO: centos7
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
-      DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
-      RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
+    - MOLECULE_DISTRO=centos7
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
+      RPM_PACKAGES_NAME="['yum-add-gitlab','gitlab-buildpkg-tools']"
 
-    # - MOLECULE_DISTRO: centos8
-    #   CI_PROJECT_NAME: gitlab-buildpkg-tools
-    #   CI_PAGES_URL: http://orange-opensource.gitlab.io
-    #   DEB_PACKAGES_NAME: "['apt-add-gitlab','gitlab-buildpkg-tools']"
-    #   RPM_PACKAGES_NAME: "['yum-add-gitlab','gitlab-buildpkg-tools']"
+    # - MOLECULE_DISTRO=centos8
+    #   CI_PROJECT_NAME=gitlab-buildpkg-tools
+    #   CI_PAGES_URL=http://orange-opensource.gitlab.io
+    #   RPM_PACKAGES_NAME="['yum-add-gitlab','gitlab-buildpkg-tools']"
 
     # Test additional
-    - MOLECULE_DISTRO: debian9
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+    - MOLECULE_DISTRO=debian9
+      MOLECULE_PLAYBOOK=playbook-additional.yml
 
-    - MOLECULE_DISTRO: debian10
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+    - MOLECULE_DISTRO=debian10
+      MOLECULE_PLAYBOOK=playbook-additional.yml
 
-    - MOLECULE_DISTRO: centos7
-      MOLECULE_PLAYBOOK: playbook-additional.yml
+    - MOLECULE_DISTRO=centos7
+      MOLECULE_PLAYBOOK=playbook-additional.yml
 
-    # - MOLECULE_DISTRO: centos8
-    #   MOLECULE_PLAYBOOK: playbook-additional.yml
+    # - MOLECULE_DISTRO=centos8
+    #   MOLECULE_PLAYBOOK=playbook-additional.yml
 
     # Test PPA and additional
-    - MOLECULE_DISTRO: debian9
-      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
+    - MOLECULE_DISTRO=debian9
+      MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
 
-    - MOLECULE_DISTRO: debian10
-      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
+    - MOLECULE_DISTRO=debian10
+      MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
 
-    - MOLECULE_DISTRO: centos7
-      MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
-      CI_PROJECT_NAME: gitlab-buildpkg-tools
-      CI_PAGES_URL: http://orange-opensource.gitlab.io
+    - MOLECULE_DISTRO=centos7
+      MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml
+      CI_PROJECT_NAME=gitlab-buildpkg-tools
+      CI_PAGES_URL=http://orange-opensource.gitlab.io
 
-    # - MOLECULE_DISTRO: centos8
-    #   MOLECULE_PLAYBOOK: playbook-ppa-and-additional.yml
-    #   CI_PROJECT_NAME: gitlab-buildpkg-tools
-    #   CI_PAGES_URL: http://orange-opensource.gitlab.io
+    # - MOLECULE_DISTRO=centos8
+    #   MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml
+    #   CI_PROJECT_NAME=gitlab-buildpkg-tools
+    #   CI_PAGES_URL=http://orange-opensource.gitlab.io
 
 install:
   # Install test dependencies.
