@@ -14,5 +14,9 @@
         id: 'updates'
         enabled: '0'
 
+    # try to install a package from CentOS-Base to refresh cache
+    gitlab_buildpkg_tools__rpm_pkgs:
+      - tmux
+
   roles:
     - role: inverse-inc.gitlab-buildpkg-tools
