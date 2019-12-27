@@ -22,7 +22,7 @@ galaxy_info:
     - build
     - pipeline
     - repositories
-    - GPG
+    - gpg
 
 
 dependencies: []
