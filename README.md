@@ -6,8 +6,12 @@ gitlab_buildpkg_tools role
 Install a [gitlab-buildpkg-tools PPA](http://orange-opensource.gitlab.io/gitlab-buildpkg-tools/)
 and packages built with [gitlab-buildpkg-tools](https://gitlab.com/Orange-OpenSource/gitlab-buildpkg-tools) in a pipeline.
 
-This role supports also installing additional repositories, GPG keys or packages to meet
-dependencies of built packages in pipeline.
+This role supports also:
+
+* installing additional repositories
+* installing GPG keys
+* installing packages to meet dependencies of built packages in pipeline
+* enable or disable repositories for EL
 
 Requirements
 ------------
@@ -88,6 +92,10 @@ List of GPG keys to install (PPA + additional).
 
 List of additional CentOS repos.
 
+    gitlab_buildpkg_tools__rpm_enabled_repos
+
+List of CentOS repos to enable/disable.
+
     gitlab_buildpkg_tools__rpm_combined_repos
 
 List of CentOS repos to install.
@@ -145,6 +153,11 @@ and `CI_PAGES_URL` variables.
 
 See [playbook-additional.yml use for molecule
 tests](molecule/default/playbook-additional.yml).
+
+### Example to enable or disable repos for Entreprise Linux ###
+
+See [playbook-enable-disable-repos.yml use for molecule
+tests](molecule/default/playbook-enable-disable-repos.yml).
 
 
 Test of this role

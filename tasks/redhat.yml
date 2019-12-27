@@ -24,6 +24,14 @@
   loop_control:
     label: "{{ item['name'] }}"
 
+- name: enable or disable repos
+  ini_file:
+    path: "/etc/yum.repos.d/{{ item['name'] }}"
+    section: "{{ item['id'] }}"
+    option: 'enabled'
+    value: "{{ item['enabled'] }}"
+  loop: "{{ gitlab_buildpkg_tools__rpm_enabled_repos }}"
+
 # update_cache to take new key(s) and repo(s) into account
 - name: install packages from RPM repos
   yum:
