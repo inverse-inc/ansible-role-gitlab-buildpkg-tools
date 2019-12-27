@@ -21,6 +21,8 @@ galaxy_info:
     - buildpkg
     - build
     - pipeline
+    - repositories
+    - GPG
 
 
 dependencies: []
