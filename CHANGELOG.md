@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Allow to enable/disable repositories in /etc/yum.repos.d for EL
+
 ## [1.0.0] - 2019-09-30
 
 ### Added

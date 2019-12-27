@@ -12,7 +12,7 @@
         baseurl: 'https://lemonldap-ng.ow2.io/lemonldap-ng/debian {{ ansible_distribution_release }} main'
 
     gitlab_buildpkg_tools__rpm_keys:
-      - https://inverse-inc.gitlab.io/perl-client/GPG_PUBLIC_KEY
+      - 'https://inverse.ca/downloads/GPG_PUBLIC_KEY'
 
     gitlab_buildpkg_tools__rpm_deps_repos:
       - name: perl-client

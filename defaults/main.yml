@@ -49,6 +49,7 @@ gitlab_buildpkg_tools__rpm_combined_keys: "{{ gitlab_buildpkg_tools__rpm_keys +
                                                if gitlab_buildpkg_tools__ppa_enabled|bool
                                                else []) }}"
 gitlab_buildpkg_tools__rpm_deps_repos: []
+gitlab_buildpkg_tools__rpm_enabled_repos: []
 gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_repos +
                                                (gitlab_buildpkg_tools__rpm_ppa
                                                 if gitlab_buildpkg_tools__ppa_enabled|bool

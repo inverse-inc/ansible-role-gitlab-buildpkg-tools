@@ -1,0 +1,22 @@
+---
+- name: Converge
+  hosts: all
+  become: True
+
+  vars:
+    gitlab_buildpkg_tools__rpm_enabled_repos:
+
+      - name: 'CentOS-CR.repo'
+        id: 'cr'
+        enabled: '1'
+
+      - name: 'CentOS-Base.repo'
+        id: 'updates'
+        enabled: '0'
+
+    # try to install a package from CentOS-Base to refresh cache
+    gitlab_buildpkg_tools__rpm_pkgs:
+      - tmux
+
+  roles:
+    - role: inverse-inc.gitlab-buildpkg-tools
