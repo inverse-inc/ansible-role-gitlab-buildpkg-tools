@@ -12,6 +12,7 @@ This role supports also:
 * installing GPG keys
 * installing packages to meet dependencies of built packages in pipeline
 * enable or disable repositories for EL
+* set priority for EL repositories
 
 Requirements
 ------------
