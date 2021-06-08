@@ -1,6 +1,7 @@
 galaxy_info:
   role_name: gitlab_buildpkg_tools
   author: "Inverse inc <info@inverse.ca>"
+  namespace: inverse_inc
   description: "Install packages from a gitlab-buildpkg-tools PPA"
   company: "Inverse inc"
   license: "GPL-3.0-only"

@@ -5,9 +5,6 @@ dependency:
 driver:
   name: docker
   
-lint:
-  name: yamllint
-  
 platforms:
   - name: instance
     # allow to override docker image with env var
@@ -20,8 +17,13 @@ platforms:
     
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
+  options:
+    diff: True
+  config_options:
+    defaults:
+      stdout_callback: yaml
+  ansible_args:
+    - --verbose
   # allow to override playbook use for converge action with env var
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
@@ -34,7 +36,6 @@ verifier:
 scenario:
   name: default  # optional
   test_sequence:
-    - lint
     - dependency
     - cleanup
     - destroy
