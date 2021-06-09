@@ -20,6 +20,7 @@
     metadata_expire: "900"
     skip_if_unavailable: no
     repo_gpgcheck: no
+    priority: "{{ item['priority'] | d(omit) }}"
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
   loop_control:
     label: "{{ item['name'] }}"

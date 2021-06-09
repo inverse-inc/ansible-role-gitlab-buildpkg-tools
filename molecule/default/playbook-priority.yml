@@ -4,24 +4,16 @@
   become: True
 
   vars:
-    gitlab_buildpkg_tools__deb_keys:
-      - https://lemonldap-ng.ow2.io/lemonldap-ng/GPG_PUBLIC_KEY
-
-    gitlab_buildpkg_tools__deb_deps_repos:
-      - name: lemonldap-ng
-        baseurl: 'https://lemonldap-ng.ow2.io/lemonldap-ng/debian {{ ansible_distribution_release }} main'
-
     gitlab_buildpkg_tools__rpm_keys:
       - 'https://inverse.ca/downloads/GPG_PUBLIC_KEY'
 
     gitlab_buildpkg_tools__rpm_deps_repos:
       - name: perl-client
         baseurl: https://inverse-inc.gitlab.io/perl-client/centos/$releasever/$basearch
+        priority: 1
       - name: packetfence
         baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/$basearch
-
-    gitlab_buildpkg_tools__deb_pkgs:
-      - lemonldap-ng
+        priority: 99
 
     gitlab_buildpkg_tools__rpm_pkgs:
       - fingerbank

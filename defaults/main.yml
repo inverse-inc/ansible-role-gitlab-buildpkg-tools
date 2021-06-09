@@ -40,6 +40,7 @@ gitlab_buildpkg_tools__deb_pkgs: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
 ## CentOS
 gitlab_buildpkg_tools__rpm_deps_pkgs:
   - gnupg2
+  - yum-priorities
 
 gitlab_buildpkg_tools__rpm_keys: []
 

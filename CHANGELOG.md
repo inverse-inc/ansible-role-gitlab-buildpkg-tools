@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-06-09
+
+### Added
+- Allow to set a priority for yum repositories
+
 ## [1.1.0] - 2019-12-27
 
 ### Added
@@ -38,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Role name in example playbook
 
-[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v0.2.0...v1.0.0
