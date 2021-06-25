@@ -3,6 +3,7 @@
   apt:
     name: "{{ gitlab_buildpkg_tools__deb_deps_pkgs }}"
     state: present
+    update_cache: yes
 
 - name: add public keys
   apt_key:
