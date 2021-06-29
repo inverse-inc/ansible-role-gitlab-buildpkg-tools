@@ -21,6 +21,7 @@
     skip_if_unavailable: no
     repo_gpgcheck: no
     priority: "{{ item['priority'] | d(omit) }}"
+    modules_hotfixes: "{{ item['module_hotfixes'] | d(omit) }}"
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
   loop_control:
     label: "{{ item['name'] }}"
