@@ -177,12 +177,12 @@ Prerequisites:
 
 Examples:
 ```shell
-$ MOLECULE_DISTRO=debian10 \
+$ MOLECULE_DISTRO=debian11 \
 CI_PROJECT_NAME=gitlab-buildpkg-tools \
 CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools \
 MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml molecule test
 
-$ MOLECULE_DISTRO=centos7 \
+$ MOLECULE_DISTRO=centos8 \
 CI_PROJECT_NAME=gitlab-buildpkg-tools \
 CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools \
 MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml molecule test

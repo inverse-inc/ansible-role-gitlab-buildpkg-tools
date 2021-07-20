@@ -18,7 +18,7 @@
       - name: perl-client
         baseurl: https://inverse-inc.gitlab.io/perl-client/centos/$releasever/$basearch
       - name: packetfence
-        baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/$basearch
+        baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/11.0/$basearch
 
     gitlab_buildpkg_tools__deb_pkgs:
       - lemonldap-ng

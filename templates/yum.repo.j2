@@ -1,0 +1,14 @@
+[{{ item['name'] }}]
+name = {{ item['name'] }} repo
+baseurl = {{ item['baseurl'] }}
+enabled = 1
+gpgcheck = 1
+metadata_expire = 900
+skip_if_unavailable = 0
+repo_gpgcheck = 0
+{% if item['priority'] is defined %}
+priority = {{ item['priority'] }}
+{% endif %}
+{% if item['module_hotfixes'] is defined %}
+module_hotfixes = {{ item['module_hotfixes'] }}
+{% endif %}

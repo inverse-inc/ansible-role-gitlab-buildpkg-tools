@@ -11,17 +11,12 @@
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
 
 - name: install repos
-  yum_repository:
-    name: "{{ item['name'] }}"
-    description: "{{ item['name'] }} repo"
-    baseurl: "{{ item['baseurl'] }}"
-    enabled: yes
-    gpgcheck: yes
-    metadata_expire: "900"
-    skip_if_unavailable: no
-    repo_gpgcheck: no
-    priority: "{{ item['priority'] | d(omit) }}"
-    modules_hotfixes: "{{ item['module_hotfixes'] | d(omit) }}"
+  template:
+    src: 'yum.repo.j2'
+    dest: "/etc/yum.repos.d/{{ item['name'] }}.repo"
+    mode: 0644
+    owner: 'root'
+    group: 'root'
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
   loop_control:
     label: "{{ item['name'] }}"

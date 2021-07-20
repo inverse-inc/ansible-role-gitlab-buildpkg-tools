@@ -12,7 +12,7 @@
         baseurl: https://inverse-inc.gitlab.io/perl-client/centos/$releasever/$basearch
         priority: 1
       - name: packetfence
-        baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/$basearch
+        baseurl: http://inverse.ca/downloads/PacketFence/centos/$releasever/11.0/$basearch
         priority: 99
 
     gitlab_buildpkg_tools__rpm_pkgs:

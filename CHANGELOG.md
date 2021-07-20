@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2021-07-20
+### Changed
+- Switch from yum_repository module to template module
+
 ## [1.3.0] - 2021-06-29
 ### Added
 - Update cache before installing packages (Debian)
@@ -48,7 +52,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Role name in example playbook
 
-[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.0.0...v1.1.0
