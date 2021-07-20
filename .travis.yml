@@ -18,7 +18,7 @@ env:
       CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools
       DEB_PACKAGES_NAME="['apt-add-gitlab','gitlab-buildpkg-tools']"
 
-    - MOLECULE_DISTRO=centos7
+    - MOLECULE_DISTRO=centos8
       CI_PROJECT_NAME=gitlab-buildpkg-tools
       CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools
       RPM_PACKAGES_NAME="['yum-add-gitlab','gitlab-buildpkg-tools']"
@@ -35,7 +35,7 @@ env:
     - MOLECULE_DISTRO=debian10
       MOLECULE_PLAYBOOK=playbook-additional.yml
 
-    - MOLECULE_DISTRO=centos7
+    - MOLECULE_DISTRO=centos8
       MOLECULE_PLAYBOOK=playbook-additional.yml
 
     # - MOLECULE_DISTRO=centos8
@@ -43,7 +43,7 @@ env:
 
     # Test enable disable repos (only for EL because that didn't make sense
     # for Debian)
-    - MOLECULE_DISTRO=centos7
+    - MOLECULE_DISTRO=centos8
       MOLECULE_PLAYBOOK=playbook-enable-disable-repos.yml
 
     # - MOLECULE_DISTRO=centos8
@@ -60,7 +60,7 @@ env:
       CI_PROJECT_NAME=gitlab-buildpkg-tools
       CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools
 
-    - MOLECULE_DISTRO=centos7
+    - MOLECULE_DISTRO=centos8
       MOLECULE_PLAYBOOK=playbook-ppa-and-additional.yml
       CI_PROJECT_NAME=gitlab-buildpkg-tools
       CI_PAGES_URL=http://orange-opensource.gitlab.io/gitlab-buildpkg-tools
@@ -72,7 +72,7 @@ env:
 
     # Test priority (only for EL because that didn't make sense
     # for Debian)
-    - MOLECULE_DISTRO=centos7
+    - MOLECULE_DISTRO=centos8
       MOLECULE_PLAYBOOK=playbook-priority.yml
 
 install:
