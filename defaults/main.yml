@@ -22,6 +22,8 @@ gitlab_buildpkg_tools__deb_deps_pkgs:
   - apt-transport-https
   - gnupg
 
+gitlab_buildpkg_tools__deb_deps_pkgs_state: 'present'
+
 gitlab_buildpkg_tools__deb_keys: []
 
 # we use '[ ]' to merge string with a list
@@ -37,9 +39,13 @@ gitlab_buildpkg_tools__deb_combined_repos: '{{ gitlab_buildpkg_tools__deb_deps_r
                                                 else []) }}'
 gitlab_buildpkg_tools__deb_pkgs: '{{ lookup("env", "DEB_PACKAGES_NAME") }}'
 
+gitlab_buildpkg_tools__deb_pkgs_state: 'present'
+
 ## CentOS
 gitlab_buildpkg_tools__rpm_deps_pkgs:
   - gnupg2
+
+gitlab_buildpkg_tools__rpm_deps_pkgs_state: 'present'
 
 gitlab_buildpkg_tools__rpm_keys: []
 
@@ -55,3 +61,5 @@ gitlab_buildpkg_tools__rpm_combined_repos: '{{ gitlab_buildpkg_tools__rpm_deps_r
                                                 if gitlab_buildpkg_tools__ppa_enabled|bool
                                                 else []) }}'
 gitlab_buildpkg_tools__rpm_pkgs: '{{ lookup("env", "RPM_PACKAGES_NAME") }}'
+
+gitlab_buildpkg_tools__rpm_pkgs_state: 'present'

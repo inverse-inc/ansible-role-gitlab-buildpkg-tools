@@ -2,7 +2,7 @@
 - name: install dependencies to install packages from repos
   apt:
     name: "{{ gitlab_buildpkg_tools__deb_deps_pkgs }}"
-    state: present
+    state: "{{ gitlab_buildpkg_tools__deb_deps_pkgs_state }}"
     update_cache: yes
 
 - name: add public keys
@@ -24,4 +24,4 @@
   apt:
     name: "{{ gitlab_buildpkg_tools__deb_pkgs }}"
     update_cache: yes
-    state: present
+    state: "{{ gitlab_buildpkg_tools__deb_pkgs_state }}"

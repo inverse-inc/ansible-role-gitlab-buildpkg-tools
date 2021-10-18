@@ -53,6 +53,10 @@ RPM PPA repo parameters.
 
 List of Debian dependencies to install repos.
 
+    gitlab_buildpkg_tools__deb_deps_pkgs_state
+
+State of Debian dependencies.
+
     gitlab_buildpkg_tools__deb_keys
 
 List of GPG keys **URL**.
@@ -77,9 +81,17 @@ List of Debian repos to install.
 
 List of Debian packages to install.
 
+    gitlab_buildpkg_tools__deb_pkgs_state
+
+State of Debian packages to install.
+
     gitlab_buildpkg_tools__rpm_deps_pkgs
 
 List of CentOS dependencies to install repos.
+
+    gitlab_buildpkg_tools__rpm_deps_pkgs_state
+
+State of CentOS dependencies.
 
     gitlab_buildpkg_tools__rpm_keys
 
@@ -104,6 +116,10 @@ List of CentOS repos to install.
     gitlab_buildpkg_tools__rpm_pkgs
 
 List of CentOS packages to install.
+
+    gitlab_buildpkg_tools__rpm_pkgs_state
+
+State of CentOS packages to install.
 
 
 Environment variables to set in a pipeline (see below):

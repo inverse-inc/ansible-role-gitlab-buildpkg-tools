@@ -2,7 +2,7 @@
 - name: install dependencies to install packages from repos
   yum:
     name: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs }}"
-    state: present
+    state: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs_state }}"
 
 - name: add public keys
   rpm_key:
@@ -34,4 +34,4 @@
   yum:
     name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
     update_cache: yes
-    state: present
+    state: "{{ gitlab_buildpkg_tools__rpm_pkgs_state }}"
