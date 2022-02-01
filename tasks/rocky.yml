@@ -1,0 +1,37 @@
+---
+- name: install dependencies to install packages from repos
+  yum:
+    name: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs }}"
+    state: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs_state }}"
+
+- name: add public keys
+  rpm_key:
+    key: "{{ item }}"
+    state: present
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
+
+- name: install repos
+  template:
+    src: 'yum.repo.j2'
+    dest: "/etc/yum.repos.d/{{ item['name'] }}.repo"
+    mode: 0644
+    owner: 'root'
+    group: 'root'
+  loop: "{{ gitlab_buildpkg_tools__rpm_combined_repos }}"
+  loop_control:
+    label: "{{ item['name'] }}"
+
+- name: enable or disable repos
+  ini_file:
+    path: "/etc/yum.repos.d/{{ item['name'] }}"
+    section: "{{ item['id'] }}"
+    option: 'enabled'
+    value: "{{ item['enabled'] }}"
+  loop: "{{ gitlab_buildpkg_tools__rpm_enabled_repos }}"
+
+# update_cache to take new key(s) and repo(s) into account
+- name: install packages from RPM repos
+  yum:
+    name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
+    update_cache: yes
+    state: "{{ gitlab_buildpkg_tools__rpm_pkgs_state }}"

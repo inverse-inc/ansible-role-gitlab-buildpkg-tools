@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2022-02-01
+### Added
+- Support for RockyLinux on old Ansible releases
+
 ## [1.3.2] - 2021-10-18
 ### Added
 - Allow to override state of packages
