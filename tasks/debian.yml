@@ -4,12 +4,20 @@
     name: "{{ gitlab_buildpkg_tools__deb_deps_pkgs }}"
     state: "{{ gitlab_buildpkg_tools__deb_deps_pkgs_state }}"
     update_cache: yes
+  register: reg_install_deb_dep_from_repos
+  retries: 5
+  delay: 10
+  until: reg_install_deb_dep_from_repos is succeeded
 
 - name: add public keys
   apt_key:
     url: "{{ item }}"
     state: present
   loop: '{{ gitlab_buildpkg_tools__deb_combined_keys }}'
+  register: reg_install_deb_keys_repos
+  retries: 5
+  delay: 10
+  until: reg_install_deb_keys is succeeded
 
 - name: install repos
   template:
@@ -25,3 +33,7 @@
     name: "{{ gitlab_buildpkg_tools__deb_pkgs }}"
     update_cache: yes
     state: "{{ gitlab_buildpkg_tools__deb_pkgs_state }}"
+  register: reg_install_deb_pkg_from_repos
+  retries: 5
+  delay: 10
+  until: reg_install_deb_pkg_from_repos is succeeded

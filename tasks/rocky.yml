@@ -3,12 +3,20 @@
   yum:
     name: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs }}"
     state: "{{ gitlab_buildpkg_tools__rpm_deps_pkgs_state }}"
+  register: reg_install_rpm_dep_from_repos
+  retries: 5
+  delay: 10
+  until: reg_install_rpm_dep_from_repos is succeeded
 
 - name: add public keys
   rpm_key:
     key: "{{ item }}"
     state: present
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
+  register: reg_install_rpm_keys_repos
+  retries: 5
+  delay: 10
+  until: reg_install_rpm_keys is succeeded
 
 - name: install repos
   template:
@@ -35,3 +43,7 @@
     name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
     update_cache: yes
     state: "{{ gitlab_buildpkg_tools__rpm_pkgs_state }}"
+  register: reg_install_rpm_pkg_from_repos
+  retries: 5
+  delay: 10
+  until: reg_install_rpm_pkg_from_repos is succeeded
