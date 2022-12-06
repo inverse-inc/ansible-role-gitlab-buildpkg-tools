@@ -13,7 +13,7 @@
     key: "{{ item }}"
     state: present
   loop: "{{ gitlab_buildpkg_tools__rpm_combined_keys }}"
-  register: reg_install_rpm_keys_repos
+  register: reg_install_rpm_keys
   retries: 5
   delay: 10
   until: reg_install_rpm_keys is succeeded
