@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.5] - 2024-01-08
+## [1.3.6] - 2024-01-08
 ### Added
 - Remove GPG signature validation in order to fix https://github.com/inverse-inc/packetfence/issues/7958
 
@@ -68,8 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Role name in example playbook
 
-[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.5...HEAD
-[1.3.5]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.4...v1.3.5
+[Unreleased]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.6...HEAD
+[1.3.6]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.4...v1.3.6
 [1.3.4]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.3...v1.3.4
 [1.3.3]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/inverse-inc/ansible-role-gitlab-buildpkg-tools/compare/v1.3.1...v1.3.2
