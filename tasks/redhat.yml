@@ -43,6 +43,7 @@
     name: "{{ gitlab_buildpkg_tools__rpm_pkgs }}"
     update_cache: yes
     state: "{{ gitlab_buildpkg_tools__rpm_pkgs_state }}"
+    disable_gpg_check: true
   register: reg_install_rpm_pkg_from_repos
   retries: 5
   delay: 10
